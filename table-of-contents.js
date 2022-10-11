@@ -190,29 +190,6 @@ var tableOfContents = function (content, target, options, beforeScroll, afterScr
 
 	}
 
-	/**  
-	* Implements the smooth scroll option
-	*/
-	// function addSmoothScroll() {
-	// 	document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-	// 		anchor.addEventListener('click', function (e) {
-	// 			e.preventDefault();
-	// 			beforeScroll();
-	// 			const anchor = e.target.href
-	// 			const element = document.getElementById(anchor.split('#')[1]);
-	// 			const headerOffset = options.headerOffset;
-	// 			const elementPosition = element.getBoundingClientRect().top;
-	// 			const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-	// 			// We're not using scrollIntoView because we want to apply an offset
-	// 			window.scrollTo({
-	// 				top: offsetPosition,
-	// 				behavior: options.smooth ? "smooth" : "auto",
-	// 			});
-	// 			scrollEndListener();
-
-	// 		});
-	// 	});
-	// }
 
 	/**
 	 * Listens for the end of the scroll
