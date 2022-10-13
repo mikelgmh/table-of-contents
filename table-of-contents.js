@@ -124,6 +124,7 @@ var tableOfContents = function (content, target, options) {
 		if (typeof settings.heading === 'undefined' || !settings.heading) {
 			heading = '';
 		} else {
+			heading = '< settings.heading.headingLevel >' + settings.heading.text + '</' + settings.heading.headingLevel + '>'
 			heading = '<' + settings.heading.headingLevel + '>' + settings.heading.text + '</' + settings.heading.headingLevel + '>'
 		}
 
