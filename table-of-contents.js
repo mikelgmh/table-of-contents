@@ -6,7 +6,7 @@
  * @param  {String} target  The selector for the container to render the table of contents into
  * @param  {Object} options An object of user options [optional]
  */
-var tableOfContents = function (content, target, options, beforeScroll, afterScroll) {
+var tableOfContents = function (content, target, options) {
 	//
 	// Variables
 	//
@@ -194,16 +194,16 @@ var tableOfContents = function (content, target, options, beforeScroll, afterScr
 	/**
 	 * Listens for the end of the scroll
 	 */
-	function scrollEndListener() {
-		let position = null
-		const checkIfScrollIsStatic = setInterval(() => {
-			if (position === window.scrollY) {
-				clearInterval(checkIfScrollIsStatic)
-				afterScroll();
-			}
-			position = window.scrollY
-		}, 50)
-	}
+	// function scrollEndListener() {
+	// 	let position = null
+	// 	const checkIfScrollIsStatic = setInterval(() => {
+	// 		if (position === window.scrollY) {
+	// 			clearInterval(checkIfScrollIsStatic)
+	// 			afterScroll();
+	// 		}
+	// 		position = window.scrollY
+	// 	}, 50)
+	// }
 
 	/**
 	 * Execute the script initialization, after that, add the smooth scrolls to each anchor
