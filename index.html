@@ -17,6 +17,20 @@
 <body>
 
     <h1>Table of Contents</h1>
+    <p>Example with the following options:</p>
+    <pre>
+        {
+            heading: {  
+                text: 'Test Heading',
+                headingLevel: "h2"
+            },
+            headingLevel: 'h2',
+            listType: 'ol',
+            levels: 'h1, h2, h3, h4',
+            headerOffset: 20,
+            smooth: true
+        }
+    </pre>
 
     <div data-toc></div>
 
@@ -131,16 +145,10 @@
             headingLevel: 'h2', // The level to use for the heading for the table of contents list
             listType: 'ol', // Change the list type -> ol | ul
             levels: 'h1, h2, h3, h4', // Change the levels used,
-            headerOffset: 50, // The number in pixels to apply a space (useful for sticky headers)
+            headerOffset: 20, // The number in pixels to apply a space (useful for sticky headers)
             smooth: true // Smooth scrolling
-        }, onBeforeScroll, onAfterScroll);
-        
-        function onBeforeScroll(){
-            console.log('Before Scroll');
-        }
-        function onAfterScroll(){
-            console.log('After Scroll');
-        }
+        });
+      
     </script>
     <style>
         .wrapper {
