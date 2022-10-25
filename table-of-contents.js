@@ -6,7 +6,7 @@
  * @param  {String} target  The selector for the container to render the table of contents into
  * @param  {Object} options An object of user options [optional]
  */
-var tableOfContents = function (content, target, options) {
+var tableOfContents = function (content, target, options, beforeScroll, afterScroll) {
 	//
 	// Variables
 	//
@@ -52,7 +52,9 @@ var tableOfContents = function (content, target, options) {
 	 */
 	var createID = function (heading) {
 		if (heading.id.length) return;
-		heading.id = 'toc_' + heading.textContent.replace(/[^A-Za-z0-9]/g, '-');
+		if(heading.innerText.trim() != "") {
+			heading.id = 'toc_' + heading.textContent.replace(/[^A-Za-z0-9]/g, '-');
+		}
 	};
 
 	/**
@@ -124,7 +126,6 @@ var tableOfContents = function (content, target, options) {
 		if (typeof settings.heading === 'undefined' || !settings.heading) {
 			heading = '';
 		} else {
-			heading = '< settings.heading.headingLevel >' + settings.heading.text + '</' + settings.heading.headingLevel + '>'
 			heading = '<' + settings.heading.headingLevel + '>' + settings.heading.text + '</' + settings.heading.headingLevel + '>'
 		}
 
@@ -177,8 +178,14 @@ var tableOfContents = function (content, target, options) {
 		// Get the headings
 		// If none are found, don't render a list
 		headings = contentWrap.querySelectorAll(settings.levels);
+		headings = Array.prototype.slice.call(headings); // Convert nodelist to array
 		if (!headings.length) return;
-
+		headings.forEach((heading,index) => {
+			// Don't add empty headings to the TOC
+			if(heading.textContent.trim() == "") {
+				headings.splice(index, 1);
+			}
+		});
 		// Inject the table of contents
 		injectTOC();
 	};
@@ -195,16 +202,16 @@ var tableOfContents = function (content, target, options) {
 	/**
 	 * Listens for the end of the scroll
 	 */
-	// function scrollEndListener() {
-	// 	let position = null
-	// 	const checkIfScrollIsStatic = setInterval(() => {
-	// 		if (position === window.scrollY) {
-	// 			clearInterval(checkIfScrollIsStatic)
-	// 			afterScroll();
-	// 		}
-	// 		position = window.scrollY
-	// 	}, 50)
-	// }
+	function scrollEndListener() {
+		let position = null
+		const checkIfScrollIsStatic = setInterval(() => {
+			if (position === window.scrollY) {
+				clearInterval(checkIfScrollIsStatic)
+				afterScroll();
+			}
+			position = window.scrollY
+		}, 50)
+	}
 
 	/**
 	 * Execute the script initialization, after that, add the smooth scrolls to each anchor
@@ -212,3 +219,5 @@ var tableOfContents = function (content, target, options) {
 	init();
 
 };
+
+export  { tableOfContents }
