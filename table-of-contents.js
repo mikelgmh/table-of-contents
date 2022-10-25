@@ -220,4 +220,3 @@ var tableOfContents = function (content, target, options, beforeScroll, afterScr
 
 };
 
-export  { tableOfContents }
